@@ -20,7 +20,7 @@ class App extends Component {
           name: PropTypes.string.isRequired,
           number: PropTypes.string.isRequired,
         })
-    ).isRequired,
+    ),
     filter: PropTypes.string,
     totalContactsCount: PropTypes.number,
     visibleContacts: PropTypes.number,
