@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
+import PropTypes from 'prop-types';
 import './App.css';
 
 import ContactForm from './Components/ContactForm';
@@ -7,6 +8,23 @@ import ContactList from './Components/ContactList';
 import Filter from './Components/Filter';
 
 class App extends Component {
+  static defaultProps = {
+    totalContactsCount: null,
+    visibleContacts: null,
+  }
+  static propTypes = {
+    contacts: PropTypes.arrayOf(
+      PropTypes.shape(
+        {
+          id: PropTypes.any.isRequired,
+          name: PropTypes.string.isRequired,
+          number: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    filter: PropTypes.string,
+    totalContactsCount: PropTypes.number,
+    visibleContacts: PropTypes.number,
+  };
   state = {
     contacts: [
       {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
@@ -20,7 +38,7 @@ class App extends Component {
   addContact = (name, number) => {
     const isInContacts = this.state.contacts.some(contact => contact.name === name)
     if (isInContacts) { alert(`${name} is already in contacts.`); return }
-    
+
     if (name && number) {
       const contact = {
         id: shortid.generate(),

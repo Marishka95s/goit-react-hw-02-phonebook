@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 
 class ContactForm extends Component {
+      static propTypes = {
+        name: PropTypes.string,
+        number: PropTypes.number,
+      };
+
     state = {
         name: '',
         number: '',
